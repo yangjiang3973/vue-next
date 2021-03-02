@@ -20,6 +20,7 @@ export const enum ReactiveFlags {
 }
 
 export interface Target {
+  //* i.e. __v_skip? : boolean
   [ReactiveFlags.SKIP]?: boolean
   [ReactiveFlags.IS_REACTIVE]?: boolean
   [ReactiveFlags.IS_READONLY]?: boolean
@@ -175,7 +176,8 @@ function createReactiveObject(
     }
     return target
   }
-  // target is already a Proxy, return it.
+  // TODO: why need to do this in createReactiveObject? consumers pass a obj with proxy from outside?
+  // target is already a Proxy(reactive), return it.
   // exception: calling readonly() on a reactive object
   if (
     target[ReactiveFlags.RAW] &&
@@ -183,7 +185,7 @@ function createReactiveObject(
   ) {
     return target
   }
-  // target already has corresponding Proxy
+  // target already has corresponding Proxy, find it from proxyMap
   const proxyMap = isReadonly ? readonlyMap : reactiveMap
   const existingProxy = proxyMap.get(target)
   if (existingProxy) {

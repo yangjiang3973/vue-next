@@ -90,7 +90,7 @@ export const isPlainObject = (val: unknown): val is object =>
 export const isIntegerKey = (key: unknown) =>
   isString(key) &&
   key !== 'NaN' &&
-  key[0] !== '-' &&
+  key[0] !== '-' && // negative integer
   '' + parseInt(key, 10) === key
 
 export const isReservedProp = /*#__PURE__*/ makeMap(

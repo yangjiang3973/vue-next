@@ -60,6 +60,7 @@ export const createApp = ((...args) => {
   }
 
   const { mount } = app
+  //* here to write mount method
   app.mount = (containerOrSelector: Element | ShadowRoot | string): any => {
     const container = normalizeContainer(containerOrSelector)
     if (!container) return
