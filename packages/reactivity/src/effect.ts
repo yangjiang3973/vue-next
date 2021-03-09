@@ -178,6 +178,7 @@ export function trigger(
     return
   }
 
+  //* here effects means effects to run at the end of trigger!
   const effects = new Set<ReactiveEffect>()
   const add = (effectsToAdd: Set<ReactiveEffect> | undefined) => {
     if (effectsToAdd) {

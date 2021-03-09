@@ -16,7 +16,7 @@ export default pkg.merge(common, {
     writeToDisk: true,
     publicPath: '/',
     compress: true,
-    port: 8989,
+    port: 8999,
     hot: true,
     inline: true,
     hotOnly: true,
